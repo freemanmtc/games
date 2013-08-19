@@ -27,6 +27,9 @@ Game = {
 		/* inicia o craty e seta o background */
 		Crafty.init(Game.width(),Game.height());
 		Crafty.background('rgb(249,223,125)');
+
+		/* cria o player e coloca no x,y */
+		Crafty.e('Player').at(5,5);
 		
 		/* coloca uma arvore em cada canto do viewport */
 		for(var x=0; x < Game.map_grid.width; x++) {

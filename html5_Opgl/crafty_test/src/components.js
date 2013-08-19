@@ -29,7 +29,7 @@ Crafty.c('Actor',{
 /* arvore */
 Crafty.c('Tree',{
 	init: function(){
-		this.requires('Actor,Color')
+		this.requires('Actor,Color,Solid')
 		.color('rgb(20,125,40)');
 	},
 });
@@ -37,7 +37,34 @@ Crafty.c('Tree',{
 /* arbusto */
 Crafty.c('Bush',{
 	init: function(){
-		this.requires('Actor,Color')
+		this.requires('Actor,Color,Solid')
 		.color('rgb(20.185.40)');
 	},
 });
+/* player */
+Crafty.c('Player',{
+	init: function(){
+		this.requires('Actor,Fourway,Color,Collision')
+		.fourway(4)
+		.color('rgb(20,75,40)')
+		.stopOnSolids();
+	},
+
+	/* sera chamado quando a entidade player colide com algo solido */
+	stopOnSolids: function(){
+		this.onHit('Solid',this.stopMovement);
+		return this;
+	},
+
+	/* para o movimento */
+	stopMovement: function(){
+		this._speed=0;
+		if(this._movement){
+			this.x-=this._movement.x;
+			this.y-=this._movement.y;
+
+		}
+	}
+});
+
+
