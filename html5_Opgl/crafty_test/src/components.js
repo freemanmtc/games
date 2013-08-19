@@ -41,13 +41,29 @@ Crafty.c('Bush',{
 		.color('rgb(20.185.40)');
 	},
 });
+
+/* vilarejo */
+Crafty.c('Village',{
+	init: function(){
+		this.requires('Actor,Color')
+		.color('rgb(170,125,40)');
+	},
+
+	collect: function(){
+		this.destroy();
+		//Crafty.trigger('VillageVisited',this);
+	}
+});
+
 /* player */
 Crafty.c('Player',{
 	init: function(){
 		this.requires('Actor,Fourway,Color,Collision')
 		.fourway(4)
 		.color('rgb(20,75,40)')
-		.stopOnSolids();
+		.stopOnSolids()
+		.onHit('Village',this.visitVillage);
+		
 	},
 
 	/* sera chamado quando a entidade player colide com algo solido */
@@ -64,6 +80,12 @@ Crafty.c('Player',{
 			this.y-=this._movement.y;
 
 		}
+	},
+
+	/* coleta o vilarejo */
+	visitVillage: function(data){
+		village=data[0].obj;
+		village.collect();
 	}
 });
 

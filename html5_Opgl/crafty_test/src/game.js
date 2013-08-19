@@ -28,6 +28,8 @@ Game = {
 		Crafty.init(Game.width(),Game.height());
 		Crafty.background('rgb(249,223,125)');
 
+
+		
 		/* cria o player e coloca no x,y */
 		Crafty.e('Player').at(5,5);
 		
@@ -45,5 +47,18 @@ Game = {
 				}
 			}
 		}
+		/* cria os vilarejos */
+		var max_villages=5;
+		for(var x = 0; x < Game.map_grid.width; x++){
+			for(var y = 0; y < Game.map_grid.height; y++){
+				if(Math.random() < 0.02){
+					Crafty.e('Village').at(x,y);
+					if(Crafty('Village').length >= max_villages){
+						return;
+					}
+				}
+			}
+		}
+
 	}	
 }
