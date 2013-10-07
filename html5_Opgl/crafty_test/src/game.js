@@ -28,37 +28,7 @@ Game = {
 		Crafty.init(Game.width(),Game.height());
 		Crafty.background('rgb(249,223,125)');
 
-
-		
-		/* cria o player e coloca no x,y */
-		Crafty.e('Player').at(5,5);
-		
-		/* coloca uma arvore em cada canto do viewport */
-		for(var x=0; x < Game.map_grid.width; x++) {
-			for(var y=0; y < Game.map_grid.height; y++) {
-				var at_edge = x == 0 || x == Game.map_grid.width -1 || y == 0 || y == Game.map_grid.height -1;
-
-				if(at_edge) {
-					/* coloca a ientidade arvore no tile atual */
-					Crafty.e('Tree').at(x,y);
-				} else if (Math.random() < 0.06) {
-					/* coloca a ientidade arbusto no tile atual */
-					Crafty.e('Bush').at(x,y);
-				}
-			}
-		}
-		/* cria os vilarejos */
-		var max_villages=5;
-		for(var x = 0; x < Game.map_grid.width; x++){
-			for(var y = 0; y < Game.map_grid.height; y++){
-				if(Math.random() < 0.02){
-					Crafty.e('Village').at(x,y);
-					if(Crafty('Village').length >= max_villages){
-						return;
-					}
-				}
-			}
-		}
-
+		/* inicia a cena game */
+		Crafty.scene('Game');
 	}	
 }

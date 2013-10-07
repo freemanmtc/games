@@ -51,12 +51,12 @@ Crafty.c('Village',{
 
 	collect: function(){
 		this.destroy();
-		//Crafty.trigger('VillageVisited',this);
+		Crafty.trigger('VillageVisited',this);
 	}
 });
 
 /* player */
-Crafty.c('Player',{
+Crafty.c('PlayerCharacter',{
 	init: function(){
 		this.requires('Actor,Fourway,Color,Collision')
 		.fourway(4)
